@@ -17,23 +17,22 @@ void PrintMatrix(int[,] matrix)
     }
 }
 
-
-double ReleaseMatrix(int[,] matrix)
-{
-    double result = 0;
-    for (int j = 0; j < matrix.GetLength(1); j++)
+void ReleaseMatrix(int[,] matrix)
+{   
+    Console.Write("Введите номер строки: ");
+    int m = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Введите номер столбца: ");
+    int n = Convert.ToInt32(Console.ReadLine());
+    int m1 = m - 1, n1 = n - 1;
+    for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        double sum = 0;
-        for (int i = 0; i < matrix.GetLength(0); i++)
-        {
-            sum = sum + matrix[i, j];
-        }
-        Math.Round(result = sum / matrix.GetLength(0), 2);
-        Console.WriteLine($"Среднее арифметиеское: {result}");
+        for (int j = 0; j < matrix.GetLength(1); j++)
+        if (m1 == i && n1 == j)
+        Console.WriteLine(matrix[m1, n1]);
     }
-    return result;
-}
-
+    if (m > matrix.GetLength(0) || n > matrix.GetLength(1))
+    Console.WriteLine("Такого числа в массиве нет");
+} 
 
 Console.Clear();
 Console.Write("Введите размер массива: ");

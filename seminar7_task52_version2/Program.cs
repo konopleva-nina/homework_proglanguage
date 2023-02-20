@@ -18,9 +18,10 @@ void PrintMatrix(int[,] matrix)
 }
 
 
-double ReleaseMatrix(int[,] matrix)
+double ArithmeticMean(int[,] matrix, double[] array)
 {
     double result = 0;
+    int k = 0;
     for (int j = 0; j < matrix.GetLength(1); j++)
     {
         double sum = 0;
@@ -28,9 +29,11 @@ double ReleaseMatrix(int[,] matrix)
         {
             sum = sum + matrix[i, j];
         }
-        Math.Round(result = sum / matrix.GetLength(0), 2);
-        Console.WriteLine($"Среднее арифметиеское: {result}");
+        result = sum / matrix.GetLength(0);
+        array[k] = Math.Round(result, 2);
+        k++;
     }
+    Console.WriteLine($"Среднее арифметиеское каждого столбца: [{string.Join(", ", array)}]");
     return result;
 }
 
@@ -39,6 +42,7 @@ Console.Clear();
 Console.Write("Введите размер массива: ");
 int[] size = Console.ReadLine()!.Split().Select(x => int.Parse(x)).ToArray();
 int[,] matrix = new int[size[0], size[1]];
+double[] array = new double[matrix.GetLength(1)];
 InputMatrix(matrix);
 PrintMatrix(matrix);
-ReleaseMatrix(matrix);
+ArithmeticMean(matrix, array);
